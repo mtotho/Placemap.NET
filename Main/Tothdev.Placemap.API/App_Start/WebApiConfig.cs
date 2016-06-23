@@ -27,12 +27,12 @@ namespace Tothdev.Placemap.API.App_Start
             //config.Formatters.JsonFormatter.SerializerSettings.DateFormatString = "MM/dd/yyyy";
 
 
-            // Web API routes
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            //// Web API routes
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
 
             //config.Filters.Add(new ExceptionHandlingAttributeWebApi());
         }

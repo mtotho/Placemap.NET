@@ -9,14 +9,14 @@ using Tothdev.Placemap.API.Models;
 namespace Tothdev.Placemap.API.VmControllers
 {
     [EnableCors(origins: "http://localhost:1337", headers: "*", methods: "*")]
-    [RoutePrefix("vm/PlaceList")]
-    public class PlaceListController : ApiController
+    [RoutePrefix("vm/Place")]
+    public class PlaceController : ApiController
     {
         [HttpGet]
         [Route("GetViewModel")]
-        public PlaceListViewModel GetViewModel()
+        public PlaceViewModel GetViewModel(string PlaceKey)
         {
-            PlaceListViewModel vm = PlaceListViewModel.GetDefault();
+            PlaceViewModel vm = PlaceViewModel.GetDefault(PlaceKey);
             return vm;
         }
     }

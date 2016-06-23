@@ -129,8 +129,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\PlaceListViewModel.cs" />
+    <Compile Include="Models\PlaceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seed.cs" />
+    <Compile Include="VmControllers\PlaceController.cs" />
     <Compile Include="VmControllers\PlaceListController.cs" />
   </ItemGroup>
   <ItemGroup>

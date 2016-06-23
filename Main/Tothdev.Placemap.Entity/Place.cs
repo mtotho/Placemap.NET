@@ -9,6 +9,7 @@ namespace Tothdev.Placemap.Entity
     public class Place
     {
         public int Id { get; set; }
+        public string PlaceKey { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public PlacemapType PlaceType { get; set; }
