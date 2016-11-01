@@ -1,1 +1,49 @@
-﻿
+﻿<map-action-bar></map-action-bar>
+
+
+<section layout="row">
+
+
+    <div flex>
+        <ui-gmap-google-map ng-show="PlaceViewModel" id="placemap" center='map.center' id="map_canvas" zoom='map.zoom' events='map.events' control='map.control'>
+
+
+            <!--  <ui-gmap-markers
+                 models='{expression}'
+                 idKey='{expression}'
+                 doRebuildAll="{string or object}"
+                 doCluster="{string or object}"
+                 clusterOptions='{expression}'
+                 fit="{string or object}"
+                 labelContent='{expression}'
+                 coords="'{string}'"
+                 icon="'{string}'"
+                 options="'{string}'"
+                 labelContent="'{string}'"
+                 labelAnchor="'{string}'"
+                 labelClass="'{string}'"
+                 click="'{string or expression to a function}'"
+                 events="{expression}"
+                 control='{expression}'
+                >
+            </ui-gmap-markers>-->
+            <ui-gmap-marker idKey="pointer.id"
+                            coords="pointer.coords"
+                            options="pointer.options"
+                            events="pointer.events"></ui-gmap-marker>
+
+            <!--<ui-gmap-markers models="responseMarkers" coords="'coords'" options="'options'" icon="'icon'"></ui-gmap-markers>-->
+
+        </ui-gmap-google-map>
+    </div>
+
+
+    <md-card flex="40" flex-md="60" flex-sm="80" style="z-index:20; margin:0px" class=" " ng-show="vm.showSideBar">
+        <placemap-feedback-bar place="vm.place"></placemap-feedback-bar>
+
+    </md-card>
+
+
+
+</section>
+

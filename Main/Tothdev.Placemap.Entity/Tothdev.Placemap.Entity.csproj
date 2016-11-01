@@ -41,8 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Place.cs" />
+    <Compile Include="PlacemapSurvey.cs" />
     <Compile Include="PlacemapType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SurveyItem.cs" />
+    <Compile Include="SurveyItemType.cs" />
+    <Compile Include="SurveyResponseAnswer.cs" />
+    <Compile Include="SurveyResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -17,7 +17,9 @@ namespace Tothdev.Placemap.Repository
     {
         public DbSet<Entity.Place> Places { get; set; }
         public DbSet<Entity.PlacemapType> PlacemapTypes { get; set; }
-     
+        public DbSet<Entity.PlacemapSurvey> PlacemapSurvey { get; set; }
+        public DbSet<Entity.SurveyItem> SurveyItem { get; set; }
+        public DbSet<Entity.SurveyItemType> SurveyItemType { get; set; }
         public PlacemapDBContext()
       : base(nameOrConnectionString: "PLACEMAP")
         {

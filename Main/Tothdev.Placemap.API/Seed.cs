@@ -45,6 +45,40 @@ namespace Tothdev.Placemap.API
             _db.PlacemapTypes.Add(placemapType1);
             _db.PlacemapTypes.Add(placemapType2);
             _db.SaveChanges();
+
+
+
+            var surveyItemType = new SurveyItemType()
+            {
+                UseScale = true,
+                InsertDate = DateTime.UtcNow,
+                IsQuestion = true,
+                Name = "likert"
+            };
+
+            _db.SurveyItemType.Add(surveyItemType);
+            _db.SaveChanges();
+
+
+            var place1 = new Place()
+            {
+                City = "Lambertville",
+                CountryCode = "US",
+                Latitude = 40.3659m,
+                Longitude = -74.9429m,
+                PostalCode = "08530",
+                Description = "Downtown Lambertville",
+                Name = "Downtown Lambertville",
+                InsertDate = DateTime.UtcNow,
+                State = "NJ",
+                PlaceTypeId = placemapType1.Id,
+                IsPublic = true,
+                PlaceKey = "LVILLE",
+                DefaultZoom = 12
+            };
+
+            _db.Places.Add(place1);
+            _db.SaveChanges();
         }
     }
 }

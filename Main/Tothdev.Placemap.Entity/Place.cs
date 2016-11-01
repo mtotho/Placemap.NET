@@ -21,6 +21,7 @@ namespace Tothdev.Placemap.Entity
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
         public bool IsPublic { get; set; }
+        public int DefaultZoom { get; set; }
         public DateTime InsertDate { get; set; }
         public DateTime? UpdateDate { get; set; }
     }

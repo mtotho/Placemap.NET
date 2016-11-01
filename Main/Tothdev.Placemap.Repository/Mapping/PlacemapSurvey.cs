@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 
 namespace Tothdev.Placemap.Repository.Mapping
 {
-    public class Place : EntityTypeConfiguration<Entity.Place>
+    public class PlacemapSurvey : EntityTypeConfiguration<Entity.PlacemapSurvey>
     {
-        public Place()
+        public PlacemapSurvey()
         {
-            ToTable("Place");
+            ToTable("PlacemapSurvey");
             HasKey(e => e.Id);
 
-            Property(x => x.Latitude).HasPrecision(12, 10);
-            Property(x => x.Longitude).HasPrecision(12, 10);
             Property(x => x.UpdateDate)
                 .IsOptional();
         }

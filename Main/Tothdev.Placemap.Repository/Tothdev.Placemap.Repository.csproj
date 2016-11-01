@@ -58,6 +58,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapping\SurveyResponseAnswer.cs" />
+    <Compile Include="Mapping\SurveyResponse.cs" />
+    <Compile Include="Mapping\SurveyItemType.cs" />
+    <Compile Include="Mapping\SurveyItem.cs" />
+    <Compile Include="Mapping\PlacemapSurvey.cs" />
     <Compile Include="Mapping\Place.cs" />
     <Compile Include="Mapping\PlacemapType.cs" />
     <Compile Include="PlacemapDBContext.cs" />

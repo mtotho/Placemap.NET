@@ -1,13 +1,13 @@
 ﻿'use strict';
 
 angular.module('Tothdev.Placemap.UI', [
-    //'ui.bootstrap',
-    'ngSanitize',
+    'ngMaterial',
+    'ngAnimate',
     'ui.router',
- //   'angular.filter'
+    'uiGmapgoogle-maps'
 ])
 
-    .config(function ($httpProvider) {
+    .config(function ($httpProvider, uiGmapGoogleMapApiProvider) {
         /*  $mdThemingProvider.theme('default')
 			  .primaryPalette('light-green', {
 				  'default': '400', // by default use shade 400 from the pink palette for primary intentions
@@ -17,7 +17,11 @@ angular.module('Tothdev.Placemap.UI', [
   
 	   //  $httpProvider.interceptors.push('TokenInterceptor');            })*/
 
-
+        //uiGmapGoogleMapApiProvider.configure({
+        //    // key: 'AIzaSyD93JNhuGDGJKKgp8JGBpj60bDbbpMgJis',
+        //    v: '3.17',
+        //    libraries: 'weather,geometry,visualization,places'
+        //});
 
 
     }).run(function ($rootScope, $window, $location) {
