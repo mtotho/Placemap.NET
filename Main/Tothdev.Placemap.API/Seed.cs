@@ -48,7 +48,7 @@ namespace Tothdev.Placemap.API
 
 
 
-            var surveyItemType = new SurveyItemType()
+            var surveyItemTypeLikert = new SurveyItemType()
             {
                 UseScale = true,
                 InsertDate = DateTime.UtcNow,
@@ -56,7 +56,92 @@ namespace Tothdev.Placemap.API
                 Name = "likert"
             };
 
-            _db.SurveyItemType.Add(surveyItemType);
+            var surveyItemTypeCheckBox = new SurveyItemType()
+            {
+                InsertDate = DateTime.UtcNow,
+                IsQuestion = true,
+                Name = "checkbox"
+            };
+            var surveyItemTypeRadio = new SurveyItemType()
+            {
+                InsertDate = DateTime.UtcNow,
+                IsQuestion = true,
+                Name = "radio"
+            };
+            var surveyItemTypeShortAnswer = new SurveyItemType()
+            {
+                InsertDate = DateTime.UtcNow,
+                IsQuestion = true,
+                Name = "shortanswer"
+            };
+
+            _db.SurveyItemTypes.Add(surveyItemTypeLikert);
+            _db.SurveyItemTypes.Add(surveyItemTypeRadio);
+            _db.SurveyItemTypes.Add(surveyItemTypeCheckBox);
+            _db.SurveyItemTypes.Add(surveyItemTypeShortAnswer);
+            _db.SaveChanges();
+
+
+            var survey1 = new PlacemapSurvey()
+            {
+                Name = "Sample Survey",
+                Description = "Sample Survey",
+                InsertDate = DateTime.UtcNow,
+            };
+
+            _db.PlacemapSurveys.Add(survey1);
+            _db.SaveChanges();
+
+            var surveyitem1 = new SurveyItem()
+            {
+                HigherIsBetter = true,
+                PlaceMapSurveyId = survey1.Id,
+                SurveyItemTypeId = surveyItemTypeLikert.Id,
+                InsertDate = DateTime.UtcNow,
+                MaximumValue = 5,
+                MinimumValue = 1,
+                Required = true,
+                ItemText = "Likely to return to this location."
+            };
+
+
+            var surveyitem2 = new SurveyItem()
+            {
+                HigherIsBetter = true,
+                PlaceMapSurveyId = survey1.Id,
+                SurveyItemTypeId = surveyItemTypeCheckBox.Id,
+                InsertDate = DateTime.UtcNow,
+                Required = true,
+                ItemText = "Please select one or many",
+                OptionJson = "['One', 'Two', 'Three']"
+            };
+
+
+            var surveyitem3 = new SurveyItem()
+            {
+                HigherIsBetter = true,
+                PlaceMapSurveyId = survey1.Id,
+                SurveyItemTypeId = surveyItemTypeRadio.Id,
+                InsertDate = DateTime.UtcNow,
+                Required = true,
+                ItemText = "Please select just one",
+                OptionJson = "['Just', 'One']"
+            };
+
+            var surveyitem4 = new SurveyItem()
+            {
+                HigherIsBetter = true,
+                PlaceMapSurveyId = survey1.Id,
+                SurveyItemTypeId = surveyItemTypeShortAnswer.Id,
+                InsertDate = DateTime.UtcNow,
+                Required = true,
+                ItemText = "Please describe"
+            };
+
+            _db.SurveyItems.Add(surveyitem1);
+            _db.SurveyItems.Add(surveyitem2);
+            _db.SurveyItems.Add(surveyitem3);
+            _db.SurveyItems.Add(surveyitem4);
             _db.SaveChanges();
 
 
@@ -71,14 +156,16 @@ namespace Tothdev.Placemap.API
                 Name = "Downtown Lambertville",
                 InsertDate = DateTime.UtcNow,
                 State = "NJ",
+                PlacemapSurveyId = survey1.Id,
                 PlaceTypeId = placemapType1.Id,
                 IsPublic = true,
                 PlaceKey = "LVILLE",
-                DefaultZoom = 12
+                DefaultZoom = 15
             };
 
             _db.Places.Add(place1);
             _db.SaveChanges();
+
         }
     }
 }

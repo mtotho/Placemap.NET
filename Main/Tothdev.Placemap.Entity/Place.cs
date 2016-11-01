@@ -13,6 +13,8 @@ namespace Tothdev.Placemap.Entity
         public string Name { get; set; }
         public string Description { get; set; }
         public PlacemapType PlaceType { get; set; }
+        public int PlacemapSurveyId { get; set; }
+        public PlacemapSurvey PlacemapSurvey { get; set; }
         public int PlaceTypeId { get; set; }
         public string City { get; set; }
         public string State { get; set; }

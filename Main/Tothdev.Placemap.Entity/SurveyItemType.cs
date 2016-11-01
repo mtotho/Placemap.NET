@@ -8,7 +8,7 @@ namespace Tothdev.Placemap.Entity
 {
     public class SurveyItemType
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public bool UseScale { get; set; }
         public bool IsQuestion { get; set; }

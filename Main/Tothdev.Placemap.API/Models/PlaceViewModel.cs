@@ -18,7 +18,12 @@ namespace Tothdev.Placemap.API.Models
 
             var _db = new PlacemapDBContext();
 
-            vm.Place = _db.Places.Include("PlaceType").FirstOrDefault(i => i.PlaceKey == PlaceKey);
+            vm.Place = _db.Places
+                .Include("PlaceType")
+                .Include("PlacemapSurvey")
+                .Include("PlacemapSurvey.SurveyItems")
+                .Include("PlacemapSurvey.SurveyItems.SurveyItemType")
+                .FirstOrDefault(i => i.PlaceKey == PlaceKey);
             vm.PlaceExists = vm.Place != null;
             if (!vm.PlaceExists)
                 return vm; 

@@ -1,0 +1,111 @@
+﻿<style>
+    #feedback-question-content {
+        min-height: 200px;
+    }
+
+    @media screen and (max-width: 600px) {
+        #feedback-question-content {
+            min-height: 0px;
+        }
+    }
+</style>
+<div layout="column" layout-padding>
+
+    <div layout="column" ng-hide="vm.questionsComplete">
+        <div layout="row" style="margin-bottom:20px;">
+            <md-button aria-label="back button"
+                       class="md-icon-button launch"
+                       ng-click="vm.goBack()">
+
+           <!--     <md-icon md-svg-icon="assets/icons/ic_arrow_back_48px.svg"></md-icon>-->
+
+            </md-button>
+            <p style="cursor:pointer" ng-click="vm.goBack()">Or choose another location</p>
+
+        </div>
+
+        <div style="font-weight:bold; margin-bottom:10px;">Please complete the following</div>
+        <md-progress-linear style="width:100%" md-mode="determinate" ng-value="(vm.QuestionIndex/(vm.questionCount-1))*100"></md-progress-linear>
+    </div>
+
+
+    <div layout="column" layout-fill layout-align="space-between start">
+        <div id="feedback-question-content" layout-fill style="padding-top:30px;" layout="column" ng-hide="vm.questionsComplete">
+
+            <div layout-padding class="question" layout="column" style="">
+
+
+                <div layout="row">
+                    <div class="question-title">
+                        {{vm.CurrentQuestion.ItemText}}
+                    </div>
+
+                    <div hide-sm style="margin-left:10px; font-size:12px; font-style:italic; " ng-show="vm.CurrentQuestion .is_required">
+                        required
+                    </div>
+                    <div show-sm hide-gt-sm style="margin-left:10px; font-size:12px; color:red; font-style:italic; " ng-show="vm.CurrentQuestion .is_required">
+                        *
+                    </div>
+                </div>
+
+
+
+
+                <div ng-show="vm.CurrentQuestion.SurveyItemType.Name==='checkbox'">
+                    <md-checkbox ng-repeat="opt in vm.CurrentQuestion.opts" ng-value="opt.text" ng-model="vm.responses[vm.CurrentQuestion.Id].response_opts[opt.text]" aria-label="Checkbox 1">
+                        {{ opt.text }}
+                    </md-checkbox>
+
+                </div>
+                <div ng-show="vm.CurrentQuestion.SurveyItemType.Name==='shortanswer'">
+                    <md-input-container>
+                        <label>Text</label>
+                        <textarea md-maxlength="500" maxlength="500" columns="1" style="" name="description" ng-model="vm.responses[vm.CurrentQuestion ._id].response_text"></textarea>
+                        <!--<div ng-messages="projectForm.description.$error">-->
+                        <!--<div ng-message="required">This is required.</div>-->
+                        <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
+                        <!--</div>-->
+                    </md-input-container>
+                </div>
+
+                <div ng-show="vm.CurrentQuestion.SurveyItemType.Name==='radio'">
+                    <md-radio-group layout-align="start center" ng-model="vm.responses[vm.CurrentQuestion ._id].response_text" class="md-primary">
+                        <md-radio-button style=" margin-right:12px;" ng-repeat="opt in vm.CurrentQuestion .opts"
+                                         ng-value="opt.text"
+                                         ">
+                            {{ opt.text }}
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+            </div>
+        </div>
+        <div layout-fill layout="row" layout-align="end center" ng-hide="vm.questionsComplete">
+            <div>
+                <md-button class="md-accent" ng-show="vm.QuestionIndex > 0" ng-click="vm.previousQuestion()">Previous</md-button>
+            </div>
+            <div>
+                <md-button class="md-primary" ng-show="vm.QuestionIndex < vm.questionCount-1" ng-click="vm.nextQuestion($event)">Next</md-button>
+                <md-button class="md-primary md-raised" ng-show="vm.QuestionIndex === vm.questionCount-1" ng-click="vm.submitFeedback($event)">Submit Feedback</md-button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div layout="column" ng-show="vm.questionsComplete">
+        <div style="font-weight:bold; margin-bottom:50px; padding:30px 0 0 30px;">
+            Thank you for providing your feedback!
+        </div>
+
+        <div layout="row">
+            <md-button aria-label="back button"
+                       class="md-icon-button launch"
+                       ng-click="vm.goBack()">
+
+             <!--   <md-icon md-svg-icon="assets/icons/ic_arrow_back_48px.svg"></md-icon>-->
+
+            </md-button>
+            <p style="cursor:pointer" ng-click="vm.goBack()">Submit more</p>
+        </div>
+    </div>
+</div>
