@@ -3,11 +3,12 @@
 angular.module('Tothdev.Placemap.UI')
     .directive('placemapFeedbackArea', function () {
         return {
-            templateUrl: 'app/controllers/place/placemap-feedback-area.html?v=2',
+            templateUrl: 'app/controllers/place/placemap-feedback-area.html?v=3',
             restrict: 'EA',
             scope: {
                 "placeviewmodel": "=",
-                "currentStep": "="
+                "currentStep": "=",
+                "pointer":"="
             },
             link: function (scope, element, attrs, ctrl) {
                 scope.showRightBar = function () {
@@ -110,6 +111,8 @@ angular.module('Tothdev.Placemap.UI')
                             response.ResponseOptionJson = angular.toJson(responseArr);
                         }
 
+                        $scope.placeviewmodel.SurveyResponse.Latitude = $scope.pointer.coords.latitude;
+                        $scope.placeviewmodel.SurveyResponse.Longitude = $scope.pointer.coords.longitude;
                         $scope.placeviewmodel.SurveyResponse.BrowserAndVersion = navigator.userAgent,
                         console.log($scope.placeviewmodel.SurveyResponse.SurveyResponseAnswers);
 

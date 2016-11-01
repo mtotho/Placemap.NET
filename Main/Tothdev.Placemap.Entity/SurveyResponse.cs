@@ -14,6 +14,8 @@ namespace Tothdev.Placemap.Entity
         public PlacemapSurvey PlacemapSurvey { get; set; }
         public int PlaceId { get; set; }
         public Place Place { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
         public string ApprovalStatus { get; set; }
         public string BrowserAndVersion { get; set; }
         public DateTime InsertDate { get; set; }

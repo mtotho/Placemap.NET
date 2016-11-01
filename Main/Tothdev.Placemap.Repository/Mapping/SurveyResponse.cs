@@ -14,6 +14,8 @@ namespace Tothdev.Placemap.Repository.Mapping
             ToTable("SurveyResponse");
             HasKey(e => e.Id);
 
+            Property(x => x.Latitude).HasPrecision(13, 10);
+            Property(x => x.Longitude).HasPrecision(13, 10);
 
             Property(x => x.UpdateDate)
                 .IsOptional();
