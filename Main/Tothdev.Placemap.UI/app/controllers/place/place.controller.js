@@ -100,7 +100,7 @@ angular.module('Tothdev.Placemap.UI')
                 }
             });
 
-
+            $scope.ResponseMarkers = [];
 
             $http({
                 method: 'GET',
@@ -124,6 +124,31 @@ angular.module('Tothdev.Placemap.UI')
                 $scope.map.zoom = viewmodel.Place.DefaultZoom;
                 $scope.PlaceViewModel = viewmodel;
                 angular.map_resize(80);
+
+
+                if ($scope.PlaceViewModel.Place.ShowResponses) { 
+                    for (var i = 0; i < $scope.PlaceViewModel.Responses.length; i++) {
+                        var response = $scope.PlaceViewModel.Responses[i];
+
+                        $scope.ResponseMarkers.push({
+                            id: response.Id,
+                            coords: {
+                                latitude: response.Latitude,
+                                longitude: response.Longitude
+                            },
+                            options: {
+                                icon:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                                draggable: false,
+                                visible: true,
+                                animation: null
+                            },
+                        });
+
+                     
+                    }
+                    console.log($scope.ResponseMarkers);
+                }
+
                 console.log($scope.PlaceViewModel);
             }, function (response) {
 

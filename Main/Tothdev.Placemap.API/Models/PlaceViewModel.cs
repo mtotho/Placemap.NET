@@ -12,7 +12,7 @@ namespace Tothdev.Placemap.API.Models
         public Place Place { get; set; }
         public bool PlaceExists { get; set; }
         public SurveyResponse SurveyResponse { get; set; }
-
+        public List<SurveyResponse> Responses { get; set; }
         public static PlaceViewModel GetDefault(string PlaceKey)
         {
             PlaceViewModel vm = new PlaceViewModel();
@@ -42,6 +42,14 @@ namespace Tothdev.Placemap.API.Models
                 {
                     SurveyItemId = item.Id,
                 });
+            }
+
+
+            if (vm.Place.ShowResponses)
+            {
+                vm.Responses = _db.SurveyResponses
+                    .Where(i => i.PlaceId == vm.Place.Id && i.PlacemapSurveyId == vm.Place.PlacemapSurveyId)
+                    .ToList();
             }
 
             return vm;
