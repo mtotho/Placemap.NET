@@ -160,10 +160,31 @@ namespace Tothdev.Placemap.API
                 PlaceTypeId = placemapType1.Id,
                 IsPublic = true,
                 PlaceKey = "LVILLE",
-                DefaultZoom = 15
+                DefaultZoom = 15,
+                ShowResponses = true
+            };
+
+            var place2 = new Place()
+            {
+                City = "Bozeman",
+                CountryCode = "US",
+                Latitude = 45.679298m,
+                Longitude = -111.046275m,
+                PostalCode = "59715",
+                Description = "Downtown Bozeman",
+                Name = "Downtown Bozeman",
+                InsertDate = DateTime.UtcNow,
+                State = "MT",
+                PlacemapSurveyId = survey1.Id,
+                PlaceTypeId = placemapType1.Id,
+                IsPublic = true,
+                PlaceKey = "BOZE",
+                DefaultZoom = 15,
+                ShowResponses = true
             };
 
             _db.Places.Add(place1);
+            _db.Places.Add(place2);
             _db.SaveChanges();
 
         }
