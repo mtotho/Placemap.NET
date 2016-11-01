@@ -32,7 +32,7 @@ angular.module('Tothdev.Placemap.UI', [
     .factory('Configuration', function () {
 
         var configuration = {
-            backend: ''
+            backend: 'backend'
         };
 
         if (location.host.indexOf('localhost') > -1) {

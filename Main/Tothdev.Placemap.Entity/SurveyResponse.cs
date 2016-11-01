@@ -12,8 +12,8 @@ namespace Tothdev.Placemap.Entity
         public List<SurveyResponseAnswer> SurveyResponseAnswers { get; set; }
         public int PlacemapSurveyId { get; set; }
         public PlacemapSurvey PlacemapSurvey { get; set; }
-        public int? ProjectId { get; set; }
-        public Place Project { get; set; }
+        public int PlaceId { get; set; }
+        public Place Place { get; set; }
         public string ApprovalStatus { get; set; }
         public string BrowserAndVersion { get; set; }
         public DateTime InsertDate { get; set; }

@@ -1,11 +1,35 @@
-﻿<placemap-actionbar current-step="currentStep"></placemap-actionbar>
+﻿<style>
+    .loading{
+        z-index:1000 !important;
+        width:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        background-color:white;
+        opacity: 0.6;
+        overflow:none;
+    
+        font-weight:bold;
+        text-align:center;
+        font-size:30px;
+    }
+    .loading .loading-text{
+        padding-top:100px;
+    }
+</style>
+<placemap-actionbar current-step="currentStep"></placemap-actionbar>
 
 
 <section layout="row">
 
+    <div class="loading full-height-window" ng-show="!PlaceViewModel">
+       <div class="loading-text">
+           Loading
+       </div>
+    </div>
 
-    <div flex>
-        <ui-gmap-google-map ng-show="PlaceViewModel" id="placemap" center='map.center' id="map_canvas" zoom='map.zoom' events='map.events' control='map.control'>
+    <div flex id="placemap">
+        <ui-gmap-google-map  center='map.center' id="map_canvas" zoom='map.zoom' events='map.events' control='map.control'>
 
 
             <!--  <ui-gmap-markers
@@ -39,7 +63,7 @@
 
 
     <md-card flex="40" flex-md="60" flex-sm="80" style="z-index:20; margin:0px" ng-show="vm.ShowFeedbackArea">
-        <placemap-feedback-area place="PlaceViewModel.Place" current-step="currentStep"></placemap-feedback-area>
+        <placemap-feedback-area placeviewmodel="PlaceViewModel" current-step="currentStep"></placemap-feedback-area>
 
     </md-card>
 

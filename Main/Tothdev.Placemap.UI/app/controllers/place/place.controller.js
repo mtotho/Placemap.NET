@@ -8,6 +8,12 @@ angular.module('Tothdev.Placemap.UI')
         
         var PlaceKey = $stateParams.PlaceKey;
 
+        vm.GoogleReady = false;
+        uiGmapGoogleMapApi.then(function () {
+            vm.GoogleReady = true;
+          //  angular.map_resize();
+        });
+
         $scope.PlaceViewModel = null;
         vm.ShowFeedbackArea = false;
 
@@ -19,14 +25,14 @@ angular.module('Tothdev.Placemap.UI')
                 "ranking": false
             }
 
-            angular.map_resize();
+            angular.map_resize(80);
             $scope.map = {
                 center:
                 {
                     latitude: 40.748817,
                     longitude: -73.985428
                 },
-                zoom: 13,
+                zoom: 3,
                 control: {},
                 options: {
 
@@ -42,7 +48,7 @@ angular.module('Tothdev.Placemap.UI')
                 },
                 options: {
                     draggable: true,
-                    visible: true,
+                    visible: false,
                     animation: null
                 },
                 events: {
@@ -57,8 +63,10 @@ angular.module('Tothdev.Placemap.UI')
 
                         if (!bool) {
                             $scope.pointer.options.animation = null;
+                            $scope.pointer.options.draggable = false;
                         } else {
                             $scope.pointer.options.animation = maps.Animation.BOUNCE;
+                            $scope.pointer.options.draggable = true;
                         }
                     });
                 }
@@ -87,7 +95,7 @@ angular.module('Tothdev.Placemap.UI')
                 }
               
                 if (step.ranking) {
-                    showPointer(false);
+                    $scope.pointer.toggleAnimation(false);
                     vm.ShowFeedbackArea = true;
                 }
             });
@@ -98,14 +106,24 @@ angular.module('Tothdev.Placemap.UI')
                 method: 'GET',
                 url: Configuration.backend + '/vm/Place/GetViewModel?PlaceKey=' + PlaceKey
             }).then(function (response) {
-                $scope.PlaceViewModel = response.data;
+           
+                var viewmodel = response.data;
+
+                for (var i = 0; i < viewmodel.Place.PlacemapSurvey.SurveyItems.length; i++) {
+                    var item = viewmodel.Place.PlacemapSurvey.SurveyItems[i];
+                    if (item.OptionJson) {
+                        item.Options = angular.fromJson(item.OptionJson);
+                    }
+                } 
 
                 $scope.map.center = {
-                    latitude: $scope.PlaceViewModel.Place.Latitude,
-                    longitude: $scope.PlaceViewModel.Place.Longitude
+                    latitude: viewmodel.Place.Latitude,
+                    longitude: viewmodel.Place.Longitude
                 };
                 showPointer(false);
-                $scope.map.zoom = $scope.PlaceViewModel.Place.DefaultZoom;
+                $scope.map.zoom = viewmodel.Place.DefaultZoom;
+                $scope.PlaceViewModel = viewmodel;
+                angular.map_resize(80);
                 console.log($scope.PlaceViewModel);
             }, function (response) {
 
@@ -119,10 +137,11 @@ angular.module('Tothdev.Placemap.UI')
 
 angular.map_resize = function (offset) {
     //var headerheight = $("#header").outerHeight();
-    //var mapbarheight = $("map-action-bar md-toolbar").outerHeight();
+  //  var mapbarheight = $("placemap-actionbar md-toolbar").outerHeight();
+   // console.log(mapbarheight);
     var windowheight = $(window).outerHeight();
 
-    var targetheight = windowheight;// - (headerheight + mapbarheight);
+    var targetheight = windowheight;// - (mapbarheight);
 
     if (offset) {
         targetheight = targetheight - offset;
@@ -130,7 +149,9 @@ angular.map_resize = function (offset) {
 
     $("#placemap .angular-google-map-container").css('height', targetheight + 'px');
     $(".full-height").css('height', targetheight + 'px');
+    $(".full-height-window").css('height', windowheight + 'px');
 
+    console.log("setting height " + targetheight);
 }
 
 $(window).resize(function () {

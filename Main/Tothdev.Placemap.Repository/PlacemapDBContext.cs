@@ -20,6 +20,8 @@ namespace Tothdev.Placemap.Repository
         public DbSet<Entity.PlacemapSurvey> PlacemapSurveys { get; set; }
         public DbSet<Entity.SurveyItem> SurveyItems { get; set; }
         public DbSet<Entity.SurveyItemType> SurveyItemTypes { get; set; }
+        public DbSet<Entity.SurveyResponse> SurveyResponses { get; set; }
+        public DbSet<Entity.SurveyResponseAnswer> SurveyResponseAnswers{ get; set; }
         public PlacemapDBContext()
       : base(nameOrConnectionString: "PLACEMAP")
         {
@@ -51,7 +53,11 @@ namespace Tothdev.Placemap.Repository
             //     modelBuilder.Entity<Entity.ProjectUserGroup>().ToTable("ProjectUserGroup").HasKey(i => i.Id);
             modelBuilder.Configurations.Add(new Mapping.Place());
             modelBuilder.Configurations.Add(new Mapping.PlacemapType());
-          
+            modelBuilder.Configurations.Add(new Mapping.PlacemapSurvey());
+            modelBuilder.Configurations.Add(new Mapping.SurveyItem());
+            modelBuilder.Configurations.Add(new Mapping.SurveyItemType());
+            modelBuilder.Configurations.Add(new Mapping.SurveyResponse());
+            modelBuilder.Configurations.Add(new Mapping.SurveyResponseAnswer());
         }
 
         public void Commit()

@@ -3,10 +3,10 @@
 angular.module('Tothdev.Placemap.UI')
     .directive('placemapFeedbackArea', function () {
         return {
-            templateUrl: 'app/controllers/place/placemap-feedback-area.html?v=1',
+            templateUrl: 'app/controllers/place/placemap-feedback-area.html?v=2',
             restrict: 'EA',
             scope: {
-                "place": "=",
+                "placeviewmodel": "=",
                 "currentStep": "="
             },
             link: function (scope, element, attrs, ctrl) {
@@ -15,7 +15,7 @@ angular.module('Tothdev.Placemap.UI')
                 }
 
             },
-            controller: function ($scope, $mdDialog, $rootScope) {
+            controller: function ($scope, $mdDialog, $rootScope, Configuration, $http) {
 
                 var vm = this;
 
@@ -33,9 +33,9 @@ angular.module('Tothdev.Placemap.UI')
                     $rootScope.$broadcast('stepChange', $scope.currentStep);
                 }
 
-                $scope.$watch('place', function () {
-                    if (!angular.isUndefinedOrNull($scope.place)) {
-                        vm.Place = $scope.place;
+                $scope.$watch('placeviewmodel', function () {
+                    if (!angular.isUndefinedOrNull($scope.placeviewmodel)) {
+                        vm.Place = $scope.placeviewmodel.Place;
                         console.log(vm.Place);
                         //vm.newFeedback.place = vm.place._id;
                         vm.questionCount = vm.Place.PlacemapSurvey.SurveyItems.length;
@@ -94,26 +94,47 @@ angular.module('Tothdev.Placemap.UI')
 
                 vm.submitFeedback = function (ev) {
 
-                    if ((vm.CurrentQuestion.IsRequired && vm.responses[vm.CurrentQuestion._id].response_text !== "") || !vm.CurrentQuestion.IsRequired) {
-                        var feedback = {
-                            place: vm.place._id,
-                            responses: []
-                        };
+                    if ((vm.CurrentQuestion.IsRequired && $scope.placeviewmodel.SurveyResponse.SurveyResponseAnswers[vm.CurrentQuestion.Id].response_text !== "") || !vm.CurrentQuestion.IsRequired) {
+                     
 
-                        for (var r in vm.responses) {
-                            console.log(r);
-                            feedback.responses.push(vm.responses[r]);
+                        for (var r in $scope.placeviewmodel.SurveyResponse.SurveyResponseAnswers) {
+                            var response = $scope.placeviewmodel.SurveyResponse.SurveyResponseAnswers[r];
+                            console.log(response);
+                            var responseArr = [];
+                            if (response.hasOwnProperty("_selectedResponse")) {
+                                for (var _r in response._selectedResponse) {
+                                    if (response._selectedResponse[_r])
+                                        responseArr.push(_r);
+                                }
+                            }
+                            response.ResponseOptionJson = angular.toJson(responseArr);
                         }
-                        var Feedback = new Resources.feedback(feedback);
 
-                        Feedback.$save(function (result) {
-                            console.log(result);
+                        $scope.placeviewmodel.SurveyResponse.BrowserAndVersion = navigator.userAgent,
+                        console.log($scope.placeviewmodel.SurveyResponse.SurveyResponseAnswers);
 
-                            vm.QuestionIndex = 0;
-                            vm.responses = [];
-                            vm.CurrentQuestion = vm.place.question_set.questions[vm.QuestionIndex];
-                            vm.questionsComplete = true;
+
+                        $http({
+                            method: 'post',
+                            url: Configuration.backend + '/api/PlaceFeedback/Post',
+                            data: $scope.placeviewmodel.SurveyResponse
+                        }).then(function (response) {
+                            location.reload();
+                        
+                            console.log(response);
+                        }, function (response) {
+
                         });
+                        //var Feedback = new Resources.feedback(feedback);
+
+                        //Feedback.$save(function (result) {
+                        //    console.log(result);
+
+                        //    vm.QuestionIndex = 0;
+                        //    vm.responses = [];
+                        //    vm.CurrentQuestion = vm.place.question_set.questions[vm.QuestionIndex];
+                        //    vm.questionsComplete = true;
+                        //});
                     } else {
                         $mdDialog.show(
                             $mdDialog.alert()

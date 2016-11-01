@@ -40,10 +40,10 @@
                         {{vm.CurrentQuestion.ItemText}}
                     </div>
 
-                    <div hide-sm style="margin-left:10px; font-size:12px; font-style:italic; " ng-show="vm.CurrentQuestion .is_required">
+                    <div hide-sm style="margin-left:10px; font-size:12px; font-style:italic; " ng-show="vm.CurrentQuestion.IsRequired">
                         required
                     </div>
-                    <div show-sm hide-gt-sm style="margin-left:10px; font-size:12px; color:red; font-style:italic; " ng-show="vm.CurrentQuestion .is_required">
+                    <div show-sm hide-gt-sm style="margin-left:10px; font-size:12px; color:red; font-style:italic; " ng-show="vm.CurrentQuestion.IsRequired">
                         *
                     </div>
                 </div>
@@ -51,16 +51,16 @@
 
 
 
-                <div ng-show="vm.CurrentQuestion.SurveyItemType.Name==='checkbox'">
-                    <md-checkbox ng-repeat="opt in vm.CurrentQuestion.opts" ng-value="opt.text" ng-model="vm.responses[vm.CurrentQuestion.Id].response_opts[opt.text]" aria-label="Checkbox 1">
-                        {{ opt.text }}
+                <div ng-show="vm.CurrentQuestion.SurveyItemType.Name==='checkbox'" layout="row" layout-wrap>
+                    <md-checkbox flex="45" ng-repeat="opt in vm.CurrentQuestion.Options" ng-value="opt" ng-model="placeviewmodel.SurveyResponse.SurveyResponseAnswers[vm.QuestionIndex]._selectedResponse[opt]" aria-label="Checkbox 1">
+                        {{ opt }}
                     </md-checkbox>
 
                 </div>
                 <div ng-show="vm.CurrentQuestion.SurveyItemType.Name==='shortanswer'">
-                    <md-input-container>
+                    <md-input-container  style="width:100%;" >
                         <label>Text</label>
-                        <textarea md-maxlength="500" maxlength="500" columns="1" style="" name="description" ng-model="vm.responses[vm.CurrentQuestion ._id].response_text"></textarea>
+                        <textarea md-maxlength="500"maxlength="500" columns="1" style="" name="description" ng-model="placeviewmodel.SurveyResponse.SurveyResponseAnswers[vm.QuestionIndex].AnswerText"></textarea>
                         <!--<div ng-messages="projectForm.description.$error">-->
                         <!--<div ng-message="required">This is required.</div>-->
                         <!--<div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>-->
@@ -69,11 +69,10 @@
                 </div>
 
                 <div ng-show="vm.CurrentQuestion.SurveyItemType.Name==='radio'">
-                    <md-radio-group layout-align="start center" ng-model="vm.responses[vm.CurrentQuestion ._id].response_text" class="md-primary">
-                        <md-radio-button style=" margin-right:12px;" ng-repeat="opt in vm.CurrentQuestion .opts"
-                                         ng-value="opt.text"
-                                         ">
-                            {{ opt.text }}
+                    <md-radio-group layout-align="start center" ng-model="placeviewmodel.SurveyResponse.SurveyResponseAnswers[vm.QuestionIndex].AnswerText" class="md-primary">
+                        <md-radio-button style="margin-right:12px;" ng-repeat="opt in vm.CurrentQuestion.Options"
+                                         ng-value="opt">
+                            {{ opt }}
                         </md-radio-button>
                     </md-radio-group>
                 </div>

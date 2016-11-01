@@ -92,16 +92,28 @@ namespace Tothdev.Placemap.API
             _db.PlacemapSurveys.Add(survey1);
             _db.SaveChanges();
 
+            //var surveyitem1 = new SurveyItem()
+            //{
+            //    HigherIsBetter = true,
+            //    PlaceMapSurveyId = survey1.Id,
+            //    SurveyItemTypeId = surveyItemTypeLikert.Id,
+            //    InsertDate = DateTime.UtcNow,
+            //    MaximumValue = 5,
+            //    MinimumValue = 1,
+            //    Required = true,
+            //    ItemText = "Likely to return to this location."
+            //};
+
+
             var surveyitem1 = new SurveyItem()
             {
                 HigherIsBetter = true,
                 PlaceMapSurveyId = survey1.Id,
-                SurveyItemTypeId = surveyItemTypeLikert.Id,
+                SurveyItemTypeId = surveyItemTypeRadio.Id,
                 InsertDate = DateTime.UtcNow,
-                MaximumValue = 5,
-                MinimumValue = 1,
                 Required = true,
-                ItemText = "Likely to return to this location."
+                ItemText = "Select a rating",
+                OptionJson = "[\"Detracts from community\", \"Important opportunity that needs work\",\"A cool place that adds value\"]"
             };
 
 
@@ -112,21 +124,10 @@ namespace Tothdev.Placemap.API
                 SurveyItemTypeId = surveyItemTypeCheckBox.Id,
                 InsertDate = DateTime.UtcNow,
                 Required = true,
-                ItemText = "Please select one or many",
-                OptionJson = "['One', 'Two', 'Three']"
+                ItemText = "What kind of place?",
+                OptionJson = "[\"Intersection\", \"Park\", \"Street\",\"Tourist attraction\",\"Plaza\",\"Public institution (library, school, post office)\",\"Cluster of shops, stores\",\"Scenic area\",\"Health care\",\"Historic site\"]"
             };
 
-
-            var surveyitem3 = new SurveyItem()
-            {
-                HigherIsBetter = true,
-                PlaceMapSurveyId = survey1.Id,
-                SurveyItemTypeId = surveyItemTypeRadio.Id,
-                InsertDate = DateTime.UtcNow,
-                Required = true,
-                ItemText = "Please select just one",
-                OptionJson = "['Just', 'One']"
-            };
 
             var surveyitem4 = new SurveyItem()
             {
@@ -135,12 +136,11 @@ namespace Tothdev.Placemap.API
                 SurveyItemTypeId = surveyItemTypeShortAnswer.Id,
                 InsertDate = DateTime.UtcNow,
                 Required = true,
-                ItemText = "Please describe"
+                ItemText = "Can you tell us a little bit more about this location?"
             };
 
             _db.SurveyItems.Add(surveyitem1);
             _db.SurveyItems.Add(surveyitem2);
-            _db.SurveyItems.Add(surveyitem3);
             _db.SurveyItems.Add(surveyitem4);
             _db.SaveChanges();
 

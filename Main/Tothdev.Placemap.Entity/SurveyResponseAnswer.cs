@@ -11,6 +11,7 @@ namespace Tothdev.Placemap.Entity
         public int Id { get; set; }
         public string AnswerText { get; set; }
         public int? AnswerValue { get; set; }
+        public string ResponseOptionJson { get; set; }
         public int? SurveyItemId { get; set; }
         public SurveyItem SurveyItem { get; set; }
         public int SurveyResponseId { get; set; }
