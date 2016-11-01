@@ -6,7 +6,8 @@ angular.module('Tothdev.Placemap.UI')
             templateUrl: 'app/controllers/place/placemap-feedback-area.html?v=1',
             restrict: 'EA',
             scope: {
-                "place": "="
+                "place": "=",
+                "currentStep": "="
             },
             link: function (scope, element, attrs, ctrl) {
                 scope.showRightBar = function () {
@@ -27,6 +28,9 @@ angular.module('Tothdev.Placemap.UI')
                 vm.goBack = function () {
                     $rootScope.$broadcast('selectLocation');
                     vm.questionsComplete = false;
+                    $scope.currentStep.ranking = false;
+                    $scope.currentStep.placing = true;
+                    $rootScope.$broadcast('stepChange', $scope.currentStep);
                 }
 
                 $scope.$watch('place', function () {
@@ -83,7 +87,7 @@ angular.module('Tothdev.Placemap.UI')
                 vm.previousQuestion = function () {
                     if (vm.QuestionIndex > 0) {
                         vm.QuestionIndex--;
-                        vm.CurrentQuestion = vm.place.question_set.questions[vm.QuestionIndex];
+                        vm.CurrentQuestion = vm.Place.PlacemapSurvey.SurveyItems[vm.QuestionIndex];
                     }
                 };
 

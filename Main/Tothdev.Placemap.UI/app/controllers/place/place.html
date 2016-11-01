@@ -1,4 +1,4 @@
-﻿<map-action-bar></map-action-bar>
+﻿<placemap-actionbar current-step="currentStep"></placemap-actionbar>
 
 
 <section layout="row">
@@ -38,8 +38,8 @@
     </div>
 
 
-    <md-card flex="40" flex-md="60" flex-sm="80" style="z-index:20; margin:0px">
-        <placemap-feedback-area place="PlaceViewModel.Place"></placemap-feedback-area>
+    <md-card flex="40" flex-md="60" flex-sm="80" style="z-index:20; margin:0px" ng-show="vm.ShowFeedbackArea">
+        <placemap-feedback-area place="PlaceViewModel.Place" current-step="currentStep"></placemap-feedback-area>
 
     </md-card>
 

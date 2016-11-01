@@ -9,8 +9,16 @@ angular.module('Tothdev.Placemap.UI')
         var PlaceKey = $stateParams.PlaceKey;
 
         $scope.PlaceViewModel = null;
+        vm.ShowFeedbackArea = false;
 
         var _init = function () {
+
+            $scope.currentStep = {
+                "starting": true,
+                "placing": false,
+                "ranking": false
+            }
+
             angular.map_resize();
             $scope.map = {
                 center:
@@ -40,7 +48,7 @@ angular.module('Tothdev.Placemap.UI')
                 events: {
                     drag: function (marker) {
                         //console.log(marker.getPosition());
-                    //   $rootScope.$broadcast('markerDrag', marker);
+                       $rootScope.$broadcast('markerDrag', marker);
                     }
                 },
                 control: {},
@@ -71,6 +79,20 @@ angular.module('Tothdev.Placemap.UI')
                 $scope.pointer.options.visible = bool;
             }
 
+            $rootScope.$on('stepChange', function (junk, step) {
+                console.log(step);
+                if (step.placing) {
+                    showPointer(true);
+                    vm.ShowFeedbackArea = false;
+                }
+              
+                if (step.ranking) {
+                    showPointer(false);
+                    vm.ShowFeedbackArea = true;
+                }
+            });
+
+
 
             $http({
                 method: 'GET',
@@ -82,7 +104,7 @@ angular.module('Tothdev.Placemap.UI')
                     latitude: $scope.PlaceViewModel.Place.Latitude,
                     longitude: $scope.PlaceViewModel.Place.Longitude
                 };
-                showPointer(true);
+                showPointer(false);
                 $scope.map.zoom = $scope.PlaceViewModel.Place.DefaultZoom;
                 console.log($scope.PlaceViewModel);
             }, function (response) {
