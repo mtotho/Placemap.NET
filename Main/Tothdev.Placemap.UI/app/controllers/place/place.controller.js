@@ -2,7 +2,7 @@
     'use strict';
 
 angular.module('Tothdev.Placemap.UI')
-    .controller('PlaceCtrl', function ($rootScope, $scope, $http, $stateParams, Configuration, uiGmapGoogleMapApi) {
+    .controller('PlaceCtrl', function ($rootScope, $scope, $http, $stateParams,$timeout, Configuration, uiGmapGoogleMapApi) {
         var vm = this;
         var AppVm = $scope.$parent.AppVm;
         
@@ -94,9 +94,18 @@ angular.module('Tothdev.Placemap.UI')
                     vm.ShowFeedbackArea = false;
                 }
               
-                if (step.ranking) {
+                if (step.ranking) { //marker placement confirmed
                     $scope.pointer.toggleAnimation(false);
                     vm.ShowFeedbackArea = true;
+
+                    $timeout(function () {
+                        $scope.map.center = {
+                            latitude: $scope.pointer.coords.latitude,
+                            longitude: $scope.pointer.coords.longitude
+                        };
+                        $scope.map.zoom = 20;
+
+                    }, 200);
                 }
             });
 

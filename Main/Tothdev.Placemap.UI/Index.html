@@ -11,13 +11,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.1/angular-material.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
-    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="res/marker_ico.png" />
+    <link rel="stylesheet" href="style.css?v=1" />
 
 
 </head>
 
 <body ng-cloak ng-app="Tothdev.Placemap.UI">
+    <section id="headerBar" layout class="md-primary md-hue-2">
+         <img src="res/marker_icon_sa.png" />
+         <div class="header-text">
+             placemap
+         </div>
+    </section>
+
 
     <div ui-view ng-cloak></div>
 

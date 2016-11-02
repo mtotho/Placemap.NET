@@ -1,40 +1,73 @@
 ﻿<style>
     placemap-actionbar md-toolbar {
-        min-height: 80px !important;
+        min-height: 48px !important;
+        height:48px;
     }
 
-    .map-fab {
-        position: absolute;
+    #btnConfirmMarkerPlacement {
+        /*position: absolute;
         top: 120px;
-        left: 420px;
+        right: 420px;
+        z-index:999;*/
     }
+    .action-card{
+        position:absolute;
+        top:150px;
+        left:10px;
+        z-index:999;
+        padding:10px;
+        margin:0;
+    }
+
 
     @media screen and (max-width: 600px) {
-        .map-fab {
+        #btnConfirmMarkerPlacement {
             top: 140px;
             left: 70%;
         }
     }
+
+    @media screen and (max-width: 1150px) {
+        .action-card{
+            top:90px;
+            right:10px;
+            left:unset;
+            padding:10px;
+        }
+    }
 </style>
 
-<md-toolbar class="md-primary md-hue-2" layout="row" layout-align="start center" layout-padding>
+
+<md-card class="action-card" ng-show="currentStep.placing ||currentStep.starting ">
+    <div flex ng-show="currentStep.starting">
+        <md-button class="md-primary md-hue-3" ng-click="vm.getStarted()">Click Here to Get Started</md-button>
+    </div>
+
+    <div flex ng-show="currentStep.placing">
+
+        Now let's move the marker to a place of interest
+
+        <md-button id="btnConfirmMarkerPlacement" class="md-primary" ng-disabled="!vm.markerDragged"
+                   ng-click="vm.confirmPlacement()"
+                   ng-show="currentStep.placing" aria-label="Okay Fab">
+            <!--<md-icon md-svg-src="img/icons/cake.svg"></md-icon>-->
+            Confirm Placement
+        </md-button>
+        <!--<md-button ng-click="vm.getStarted()" >Get Started</md-button>-->
+    </div>
+
+    <!--<div flex ng-show="currentStep.ranking">
+
+        Okay great. Now it is time to provide feedback for this location
+   
+    </div>-->
+</md-card>
+
+
+<!--<md-toolbar class="md-primary md-hue-2" layout="row" layout-align="start center" layout-padding>
 
     <div layout="row" flex="80" flex-gt-sm="60">
-        <div flex ng-show="currentStep.starting">
-            <md-button ng-click="vm.getStarted()">Click Here to Get Started</md-button>
-        </div>
-
-        <div flex ng-show="currentStep.placing">
-
-            Now let's move the marker to a place of interest
-            <!--<md-button ng-click="vm.getStarted()" >Get Started</md-button>-->
-        </div>
-
-        <div flex ng-show="currentStep.ranking">
-
-            Okay great. Now it is time to provide feedback for this location
-            <!--<md-button ng-click="vm.getStarted()" >Get Started</md-button>-->
-        </div>
+       
     </div>
 
     <div flex>
@@ -47,11 +80,4 @@
 
 
 
-</md-toolbar>
-
-<md-button class="md-fab map-fab md-primary md-hue-2" ng-disabled="!vm.markerDragged"
-           ng-click="vm.confirmPlacement()"
-           ng-show="currentStep.placing" aria-label="Okay Fab">
-    <!--<md-icon md-svg-src="img/icons/cake.svg"></md-icon>-->
-    Ok
-</md-button>
+</md-toolbar>-->

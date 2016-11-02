@@ -3,7 +3,7 @@
 angular.module('Tothdev.Placemap.UI')
     .directive('placemapActionbar', function () {
         return {
-            templateUrl: 'app/controllers/place/placemap-actionbar.html?v=3',
+            templateUrl: 'app/controllers/place/placemap-actionbar.html?v=4',
             restrict: 'EA',
             scope: {
                 "currentStep": "="
