@@ -87,17 +87,26 @@ angular.module('Tothdev.Placemap.UI')
                 $scope.pointer.options.visible = bool;
             }
 
+            var confirmedAtLeastOnce = false;
             $rootScope.$on('stepChange', function (junk, step) {
                 console.log(step);
+
+
                 if (step.placing) {
                     showPointer(true);
                     vm.ShowFeedbackArea = false;
+
+                    //$scope.map.zoom = 20;
+
+                    if (confirmedAtLeastOnce) {
+                        $scope.map.zoom = $scope.map.zoom - 2;
+                    }
                 }
               
                 if (step.ranking) { //marker placement confirmed
                     $scope.pointer.toggleAnimation(false);
                     vm.ShowFeedbackArea = true;
-
+                    confirmedAtLeastOnce = true;
                     $timeout(function () {
                         $scope.map.center = {
                             latitude: $scope.pointer.coords.latitude,

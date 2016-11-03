@@ -20,13 +20,6 @@
     }
 
 
-    @media screen and (max-width: 600px) {
-        #btnConfirmMarkerPlacement {
-            top: 140px;
-            left: 70%;
-        }
-    }
-
     @media screen and (max-width: 1150px) {
         .action-card{
             top:90px;
@@ -45,13 +38,13 @@
 
     <div flex ng-show="currentStep.placing">
 
-        Now let's move the marker to a place of interest
+        Okay, please drag the bouncing marker to a place of interest and
 
         <md-button id="btnConfirmMarkerPlacement" class="md-primary" ng-disabled="!vm.markerDragged"
                    ng-click="vm.confirmPlacement()"
                    ng-show="currentStep.placing" aria-label="Okay Fab">
             <!--<md-icon md-svg-src="img/icons/cake.svg"></md-icon>-->
-            Confirm Placement
+            Click Here When Ready
         </md-button>
         <!--<md-button ng-click="vm.getStarted()" >Get Started</md-button>-->
     </div>

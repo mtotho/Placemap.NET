@@ -3,7 +3,7 @@
 angular.module('Tothdev.Placemap.UI')
     .directive('placemapFeedbackArea', function () {
         return {
-            templateUrl: 'app/controllers/place/placemap-feedback-area.html?v=3',
+            templateUrl: 'app/controllers/place/placemap-feedback-area.html?v=4',
             restrict: 'EA',
             scope: {
                 "placeviewmodel": "=",

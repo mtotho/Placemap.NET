@@ -12,20 +12,9 @@
 <div layout="column" layout-padding>
 
     <div layout="column" ng-hide="vm.questionsComplete">
-        <div layout="row" style="margin-bottom:20px;">
-            <md-button aria-label="back button"
-                       class="md-icon-button launch"
-                       style="padding-left:0px;margin-left:0px;"
-                       ng-click="vm.goBack()">
-                <i class="material-icons" style="line-height:35px">arrow_back</i>
-           <!--     <md-icon md-svg-icon="assets/icons/ic_arrow_back_48px.svg"></md-icon>-->
+     
 
-            </md-button>
-            <p style="cursor:pointer" ng-click="vm.goBack()">Choose another location instead</p>
-
-        </div>
-
-        <div style="font-weight:bold; margin-bottom:10px;">Please complete the following questions:</div>
+        <div style="font-weight:bold; margin-bottom:10px;">Please complete the following questions about this location:</div>
         <md-progress-linear style="width:100%" md-mode="determinate" ng-value="(vm.QuestionIndex/(vm.questionCount-1))*100"></md-progress-linear>
     </div>
 
@@ -38,7 +27,7 @@
 
                 <div layout="row">
                     <div class="question-title">
-                        {{vm.CurrentQuestion.ItemText}}
+                        {{vm.QuestionIndex + 1}}. {{vm.CurrentQuestion.ItemText}}
                     </div>
 
                     <div hide-sm style="margin-left:10px; font-size:12px; font-style:italic; " ng-show="vm.CurrentQuestion.IsRequired">
@@ -89,6 +78,19 @@
             </div>
 
         </div>
+    </div>
+
+    <div layout="row" style="margin-top:50px;">
+        <md-button aria-label="back button"
+                   class="md-icon-button launch"
+                   style="padding-left:0px;margin-left:0px;"
+                   ng-click="vm.goBack()">
+            <i class="material-icons" style="line-height:35px">arrow_back</i>
+            <!--     <md-icon md-svg-icon="assets/icons/ic_arrow_back_48px.svg"></md-icon>-->
+
+        </md-button>
+        <p style="cursor:pointer" ng-click="vm.goBack()">Click here to choose a different location instead</p>
+
     </div>
 
 
