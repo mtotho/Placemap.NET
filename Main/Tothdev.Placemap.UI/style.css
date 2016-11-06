@@ -27,3 +27,8 @@
     color:#AFCA89;
     display:inline-block;
 }
+
+#headerBar .place-text{
+    font-size:20px;
+    margin-left:40px;
+}

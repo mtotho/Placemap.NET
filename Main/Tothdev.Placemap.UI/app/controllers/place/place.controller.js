@@ -9,19 +9,20 @@ angular.module('Tothdev.Placemap.UI')
         var PlaceKey = $stateParams.PlaceKey;
 
         vm.GoogleReady = false;
-        uiGmapGoogleMapApi.then(function () {
+        uiGmapGoogleMapApi.then(function (maps) {
             vm.GoogleReady = true;
-          //  angular.map_resize();
+            //  angular.map_resize();
+          
         });
 
         $scope.PlaceViewModel = null;
         vm.ShowFeedbackArea = false;
-
+        $scope.mapControl = null;
         var _init = function () {
 
             $scope.currentStep = {
-                "starting": true,
-                "placing": false,
+                "starting": false,
+                "placing": true,
                 "ranking": false
             }
 
@@ -34,12 +35,18 @@ angular.module('Tothdev.Placemap.UI')
                 },
                 zoom: 3,
                 control: {},
+                refresh:true,
                 options: {
 
                 },
                 markersControl: {}
             };
-
+            //$timeout(function () {
+            //    uiGmapGoogleMapApi.then(function (maps) {
+            //        //  angular.map_resize();
+            //        maps.event.trigger($scope.map.control.getGMap(), 'resize')
+            //    });
+            //},100);
             $scope.pointer = {
                 id: "pointer",
                 coords: {
@@ -57,7 +64,6 @@ angular.module('Tothdev.Placemap.UI')
                        $rootScope.$broadcast('markerDrag', marker);
                     }
                 },
-                control: {},
                 toggleAnimation: function (bool) {
                     uiGmapGoogleMapApi.then(function (maps) {
 
@@ -119,30 +125,37 @@ angular.module('Tothdev.Placemap.UI')
             });
 
             $scope.ResponseMarkers = [];
-
+            $scope.mapControl = {};
             $http({
                 method: 'GET',
                 url: Configuration.backend + '/vm/Place/GetViewModel?PlaceKey=' + PlaceKey
             }).then(function (response) {
            
                 var viewmodel = response.data;
-
+                AppVm.PlaceName = viewmodel.Place.Name;
                 for (var i = 0; i < viewmodel.Place.PlacemapSurvey.SurveyItems.length; i++) {
                     var item = viewmodel.Place.PlacemapSurvey.SurveyItems[i];
                     if (item.OptionJson) {
                         item.Options = angular.fromJson(item.OptionJson);
                     }
                 } 
+                    
+                $timeout(function () {
+                    uiGmapGoogleMapApi.then(function (maps) {
+                        $scope.mapControl.refresh();
+                        $scope.map.center = {
+                            latitude: viewmodel.Place.Latitude,
+                            longitude: viewmodel.Place.Longitude
+                        };
+                        showPointer(true);
+                    });
+                },100);
 
-                $scope.map.center = {
-                    latitude: viewmodel.Place.Latitude,
-                    longitude: viewmodel.Place.Longitude
-                };
-                showPointer(false);
+            
                 $scope.map.zoom = viewmodel.Place.DefaultZoom;
                 $scope.PlaceViewModel = viewmodel;
                 angular.map_resize(80);
-
+               
 
                 if ($scope.PlaceViewModel.Place.ShowResponses) { 
                     for (var i = 0; i < $scope.PlaceViewModel.Responses.length; i++) {
@@ -176,29 +189,5 @@ angular.module('Tothdev.Placemap.UI')
          _init();
     });
 
-
-
-angular.map_resize = function (offset) {
-    //var headerheight = $("#header").outerHeight();
-  //  var mapbarheight = $("placemap-actionbar md-toolbar").outerHeight();
-   // console.log(mapbarheight);
-    var windowheight = $(window).outerHeight();
-
-    var targetheight = windowheight;// - (mapbarheight);
-
-    if (offset) {
-        targetheight = targetheight - offset;
-    }
-
-    $("#placemap .angular-google-map-container").css('height', targetheight + 'px');
-    $(".full-height").css('height', targetheight + 'px');
-    $(".full-height-window").css('height', windowheight + 'px');
-
-    console.log("setting height " + targetheight);
-}
-
-$(window).resize(function () {
-    angular.map_resize()
-});
 
 })();

@@ -69,3 +69,28 @@ angular.module('Tothdev.Placemap.UI', [
 angular.isUndefinedOrNull = function (val) {
     return angular.isUndefined(val) || val === null
 }
+
+
+
+angular.map_resize = function (offset) {
+    //var headerheight = $("#header").outerHeight();
+    //  var mapbarheight = $("placemap-actionbar md-toolbar").outerHeight();
+    // console.log(mapbarheight);
+    var windowheight = $(window).outerHeight();
+
+    var targetheight = windowheight;// - (mapbarheight);
+
+    if (offset) {
+        targetheight = targetheight - offset;
+    }
+
+    $("#placemap .angular-google-map-container").css('height', targetheight + 'px');
+    $(".full-height").css('height', targetheight + 'px');
+    $(".full-height-window").css('height', windowheight + 'px');
+
+    console.log("setting height " + targetheight);
+}
+
+$(window).resize(function () {
+    angular.map_resize()
+});

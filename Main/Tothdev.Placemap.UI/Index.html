@@ -17,11 +17,15 @@
 
 </head>
 
-<body ng-cloak ng-app="Tothdev.Placemap.UI">
+<body ng-cloak ng-app="Tothdev.Placemap.UI" ng-controller="AppCtrl as AppVm">
     <section id="headerBar" layout class="md-primary md-hue-2">
          <img src="res/marker_icon_sa.png" />
          <div class="header-text">
              placemap
+         </div>
+
+         <div class="place-text">
+             {{AppVm.PlaceName}}
          </div>
     </section>
 
@@ -53,7 +57,8 @@
     <script src="app/routes.js"></script>
   
     <script src="app/controllers/place/placemapActionBar.js"></script>
-    <script src="app//controllers/place/placemapFeedbackArea.js"></script>
+    <script src="app/controllers/place/placemapFeedbackArea.js"></script>
     <script src="app/controllers/place/place.controller.js"></script>
+    <script src="app/controllers/studyarea/studyarea.controller.js"></script>
 </body>
 </html>

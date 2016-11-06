@@ -183,8 +183,28 @@ namespace Tothdev.Placemap.API
                 ShowResponses = true
             };
 
+            var place3 = new Place()
+            {
+                City = "Forth Worth",
+                CountryCode = "US",
+                Latitude = 32.732780m,
+                Longitude = -97.331572m,
+                PostalCode = "59715",
+                Description = "Hemphill St",
+                Name = "Hemphill St, Fort Worth",
+                InsertDate = DateTime.UtcNow,
+                State = "TX",
+                PlacemapSurveyId = survey1.Id,
+                PlaceTypeId = placemapType1.Id,
+                IsPublic = true,
+                PlaceKey = "HEMPHILL",
+                DefaultZoom = 15,
+                ShowResponses = false
+            };
+
             _db.Places.Add(place1);
             _db.Places.Add(place2);
+            _db.Places.Add(place3);
             _db.SaveChanges();
 
         }

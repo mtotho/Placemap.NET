@@ -1,0 +1,75 @@
+﻿<style>
+    #placemap{
+        position:relative;
+    }
+    #contentArea{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+    }
+    #contentArea md-card{
+        margin-left:0px;
+        margin-right:0px;
+        margin-top:10px;
+        padding:10px 15px 10px 15px;
+    }
+
+    .section-heading{
+        font-weight:bold;
+        font-size:26px;
+        margin-bottom:15px;
+    }
+    .section-text{
+        font-size:18px;
+        margin-bottom:10px;
+    }
+</style>
+<section>
+
+    <div id="placemap">
+        <ui-gmap-google-map center='map.center' id="map_canvas" zoom='map.zoom' events='map.events' control='mapControl'>
+        </ui-gmap-google-map>
+
+        <div id="contentArea">
+            <div style="width:100%" layout="row" layout-align="center start">
+                <md-card flex-xs="100" flex-sm="95" flex-md="90" flex-lg="85" flex-xl="80">
+                    <div class="section-heading">
+                        Assessing the places and streets in my community.
+                        What do I like, what don't I like and what can be done?
+                    </div>
+
+                    <div class="section-text">
+                        Placemapping is a process that allows individuals to provide input on the quality of public and 
+                        private spaces, streets, transit stops and any other element that helps shape your neighborhood or
+                        community. In every community, there are high performing cherished places that contribute to your 
+                        quality of life, such as parks, Main Streets or waterfronts.   
+                        There are also places that we wish could be made better; often these are streets which can be too 
+                        wide and are barriers to movement and/or appreciation of an area.
+                    </div>
+
+                    <div class="section-text">
+                        This Placemapping site will allow you the opportunity to express your feelings directly into an application that 
+                        will gather and synthesize the input, which can then be used to advise our leaders on quality places that 
+                        need to be leveraged as well as lower performing places or streets that should be improved.
+                    </div>
+
+                    <div class="section-text" style="margin-top:10px; margin-bottom:20px;">
+                        As you work through this application you would be allocated a total of 15 markers, which you 
+                        can distribute as your choose between favorite places, not so favorite and opportunity places.
+                    </div>
+
+                    <div>
+                        <md-button class="md-primary" ui-sref="Place({PlaceKey:vm.PlaceKey})">Click Here Get started</md-button>
+                    </div>
+                </md-card>
+
+            </div>
+
+        </div>
+   
+    </div>
+
+
+</section>
