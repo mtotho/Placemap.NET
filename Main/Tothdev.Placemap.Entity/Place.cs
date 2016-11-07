@@ -16,6 +16,7 @@ namespace Tothdev.Placemap.Entity
         public int PlacemapSurveyId { get; set; }
         public PlacemapSurvey PlacemapSurvey { get; set; }
         public bool ShowResponses { get; set; }
+        public bool CanSeeOwnResponses { get; set; }
         public int PlaceTypeId { get; set; }
         public string City { get; set; }
         public string State { get; set; }
@@ -27,5 +28,10 @@ namespace Tothdev.Placemap.Entity
         public int DefaultZoom { get; set; }
         public DateTime InsertDate { get; set; }
         public DateTime? UpdateDate { get; set; }
+
+        public Place()
+        {
+            CanSeeOwnResponses = true;
+        }
     }
 }

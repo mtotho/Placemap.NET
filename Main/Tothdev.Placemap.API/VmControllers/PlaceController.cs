@@ -16,7 +16,10 @@ namespace Tothdev.Placemap.API.VmControllers
         [Route("GetViewModel")]
         public PlaceViewModel GetViewModel(string PlaceKey)
         {
-            PlaceViewModel vm = PlaceViewModel.GetDefault(PlaceKey);
+            var sessionKey = Request.Headers.FirstOrDefault(i => i.Key == "SESSION_KEY");
+            var sessionKeyString = sessionKey.Key != null ? sessionKey.Value.FirstOrDefault() : "";
+
+            PlaceViewModel vm = PlaceViewModel.GetDefault(PlaceKey, sessionKeyString);
             return vm;
         }
     }

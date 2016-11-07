@@ -110,10 +110,34 @@ namespace Tothdev.Placemap.API
                 HigherIsBetter = true,
                 PlaceMapSurveyId = survey1.Id,
                 SurveyItemTypeId = surveyItemTypeRadio.Id,
+                DeterminesMarkerColor = true,
                 InsertDate = DateTime.UtcNow,
                 Required = true,
-                ItemText = "Select a rating",
-                OptionJson = "[\"Detracts from community\", \"Important opportunity that needs work\",\"A cool place that adds value\"]"
+                ItemText = "Does this place add or subtract value to your community",
+                Options = new List<SurveyItemOption>()
+                {
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "Detracts from community",
+                        OptionValue = "1",
+                        IsNumericValue = true,
+                    },
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "Important opportunity that needs work",
+                        OptionValue = "2",
+                        IsNumericValue = true,
+                    },
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "A cool place that adds value",
+                        OptionValue = "3",
+                        IsNumericValue = true,
+                    }
+                }
             };
 
 
@@ -125,7 +149,72 @@ namespace Tothdev.Placemap.API
                 InsertDate = DateTime.UtcNow,
                 Required = true,
                 ItemText = "What kind of place?",
-                OptionJson = "[\"Intersection\", \"Park\", \"Street\",\"Tourist attraction\",\"Plaza\",\"Public institution (library, school, post office)\",\"Cluster of shops, stores\",\"Scenic area\",\"Health care\",\"Historic site\"]"
+                Options = new List<SurveyItemOption>()
+                {
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "Intersection",
+                        OptionValue = "Intersection",
+                        IsNumericValue = false,
+                    },
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "Park",
+                        OptionValue = "Park",
+                        IsNumericValue = false,
+                    },
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "Tourist attraction",
+                        OptionValue = "Tourist attraction",
+                        IsNumericValue = false,
+                    },
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "Plaza",
+                        OptionValue = "Plaza",
+                        IsNumericValue = false,
+                    },
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "Public institution (library, school, post office)",
+                        OptionValue = "Public institution (library, school, post office)",
+                        IsNumericValue = false,
+                    },
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "Cluster of shops, stores",
+                        OptionValue = "Cluster of shops, stores",
+                        IsNumericValue = false,
+                    },
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "Scenic area",
+                        OptionValue = "Scenic area",
+                        IsNumericValue = false,
+                    },
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "Health care",
+                        OptionValue = "Health care",
+                        IsNumericValue = false,
+                    },
+                    new SurveyItemOption()
+                    {
+                        InsertDate = DateTime.UtcNow,
+                        OptionText = "Historic site",
+                        OptionValue = "Historic site",
+                        IsNumericValue = false,
+                    }
+                }
             };
 
 

@@ -32,7 +32,27 @@ angular.module('Tothdev.Placemap.UI')
                     $scope.currentStep.ranking = false;
                     $scope.currentStep.placing = true;
                     $rootScope.$broadcast('stepChange', $scope.currentStep);
-                }
+                };
+
+                vm.ChangeValue = function (value, question) {
+                    console.log(question);
+
+                    if (question.DeterminesMarkerColor) {
+                        switch (value) {
+                            case "1":
+                                $scope.pointer.setIcon("red");
+                                break;
+                            case "2":
+                                $scope.pointer.setIcon("yellow");
+                                break;
+                            case "3":
+                                $scope.pointer.setIcon("green");
+                                break;
+                        }
+                       // $rootScope.$broadcast('pointerColorChange', value);
+                    }
+                    //$rootScope.$broadcast('stepChange', $scope.currentStep);
+                };
 
                 $scope.$watch('placeviewmodel', function () {
                     if (!angular.isUndefinedOrNull($scope.placeviewmodel)) {

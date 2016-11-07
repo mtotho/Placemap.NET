@@ -55,6 +55,7 @@ namespace Tothdev.Placemap.Repository
             modelBuilder.Configurations.Add(new Mapping.PlacemapType());
             modelBuilder.Configurations.Add(new Mapping.PlacemapSurvey());
             modelBuilder.Configurations.Add(new Mapping.SurveyItem());
+            modelBuilder.Configurations.Add(new Mapping.SurveyItemOption());
             modelBuilder.Configurations.Add(new Mapping.SurveyItemType());
             modelBuilder.Configurations.Add(new Mapping.SurveyResponse());
             modelBuilder.Configurations.Add(new Mapping.SurveyResponseAnswer());

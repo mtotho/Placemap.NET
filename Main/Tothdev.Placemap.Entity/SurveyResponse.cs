@@ -18,6 +18,7 @@ namespace Tothdev.Placemap.Entity
         public decimal Longitude { get; set; }
         public string ApprovalStatus { get; set; }
         public string BrowserAndVersion { get; set; }
+        public string SessionKey { get; set; }
         public DateTime InsertDate { get; set; }
         public DateTime? UpdateDate { get; set; }
     }

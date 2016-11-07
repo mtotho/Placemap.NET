@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapping\SurveyItemOption.cs" />
     <Compile Include="Mapping\SurveyResponseAnswer.cs" />
     <Compile Include="Mapping\SurveyResponse.cs" />
     <Compile Include="Mapping\SurveyItemType.cs" />

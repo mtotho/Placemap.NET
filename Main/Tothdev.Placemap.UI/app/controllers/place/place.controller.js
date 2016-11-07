@@ -47,8 +47,19 @@ angular.module('Tothdev.Placemap.UI')
             //        maps.event.trigger($scope.map.control.getGMap(), 'resize')
             //    });
             //},100);
+            var icons = {
+                "red": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+                "yellow": "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
+                "green": "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
+                "blue": "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+            };
+
             $scope.pointer = {
                 id: "pointer",
+              
+                setIcon:function(color){
+                    this.options.icon = icons[color];
+                },
                 coords: {
                     latitude: 40.733973,
                     longitude: -73.986695
@@ -56,7 +67,8 @@ angular.module('Tothdev.Placemap.UI')
                 options: {
                     draggable: true,
                     visible: false,
-                    animation: null
+                    animation: null,
+                    icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
                 },
                 events: {
                     drag: function (marker) {
@@ -133,12 +145,12 @@ angular.module('Tothdev.Placemap.UI')
            
                 var viewmodel = response.data;
                 AppVm.PlaceName = viewmodel.Place.Name;
-                for (var i = 0; i < viewmodel.Place.PlacemapSurvey.SurveyItems.length; i++) {
-                    var item = viewmodel.Place.PlacemapSurvey.SurveyItems[i];
-                    if (item.OptionJson) {
-                        item.Options = angular.fromJson(item.OptionJson);
-                    }
-                } 
+                //for (var i = 0; i < viewmodel.Place.PlacemapSurvey.SurveyItems.length; i++) {
+                //    var item = viewmodel.Place.PlacemapSurvey.SurveyItems[i];
+                //    if (item.OptionJson) {
+                //        item.Options = angular.fromJson(item.OptionJson);
+                //    }
+                //} 
                     
                 $timeout(function () {
                     uiGmapGoogleMapApi.then(function (maps) {
@@ -147,20 +159,21 @@ angular.module('Tothdev.Placemap.UI')
                             latitude: viewmodel.Place.Latitude,
                             longitude: viewmodel.Place.Longitude
                         };
+                        $scope.map.zoom = viewmodel.Place.DefaultZoom;
                         showPointer(true);
                     });
                 },100);
 
             
-                $scope.map.zoom = viewmodel.Place.DefaultZoom;
+
                 $scope.PlaceViewModel = viewmodel;
                 angular.map_resize(80);
                
 
-                if ($scope.PlaceViewModel.Place.ShowResponses) { 
+                if ($scope.PlaceViewModel.Responses.length > 0) {
                     for (var i = 0; i < $scope.PlaceViewModel.Responses.length; i++) {
                         var response = $scope.PlaceViewModel.Responses[i];
-
+                        console.log(response);
                         $scope.ResponseMarkers.push({
                             id: response.Id,
                             coords: {
@@ -168,7 +181,7 @@ angular.module('Tothdev.Placemap.UI')
                                 longitude: response.Longitude
                             },
                             options: {
-                                icon:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                                icon: icons[response.MarkerColor],
                                 draggable: false,
                                 visible: true,
                                 animation: null

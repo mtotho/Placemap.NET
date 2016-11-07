@@ -42,8 +42,8 @@
 
 
                 <div ng-show="vm.CurrentQuestion.SurveyItemType.Name==='checkbox'" layout="row" layout-wrap>
-                    <md-checkbox flex="45" ng-repeat="opt in vm.CurrentQuestion.Options" ng-value="opt" ng-model="placeviewmodel.SurveyResponse.SurveyResponseAnswers[vm.QuestionIndex]._selectedResponse[opt]" aria-label="Checkbox 1">
-                        {{ opt }}
+                    <md-checkbox flex="45" ng-repeat="opt in vm.CurrentQuestion.Options" ng-value="opt.OptionValue" ng-model="placeviewmodel.SurveyResponse.SurveyResponseAnswers[vm.QuestionIndex]._selectedResponse[opt.OptionValue]" aria-label="Checkbox 1">
+                        {{ opt.OptionText }}
                     </md-checkbox>
 
                 </div>
@@ -59,10 +59,11 @@
                 </div>
 
                 <div ng-show="vm.CurrentQuestion.SurveyItemType.Name==='radio'">
-                    <md-radio-group layout-align="start center" ng-model="placeviewmodel.SurveyResponse.SurveyResponseAnswers[vm.QuestionIndex].AnswerText" class="md-primary">
+                    <md-radio-group layout-align="start center" ng-model="placeviewmodel.SurveyResponse.SurveyResponseAnswers[vm.QuestionIndex].AnswerText"  
+                                    ng-change="vm.ChangeValue(placeviewmodel.SurveyResponse.SurveyResponseAnswers[vm.QuestionIndex].AnswerText, vm.CurrentQuestion)" class="md-primary">
                         <md-radio-button style="margin-right:12px;" ng-repeat="opt in vm.CurrentQuestion.Options"
-                                         ng-value="opt">
-                            {{ opt }}
+                                         ng-value="opt.OptionValue">
+                            {{ opt.OptionText }}
                         </md-radio-button>
                     </md-radio-group>
                 </div>

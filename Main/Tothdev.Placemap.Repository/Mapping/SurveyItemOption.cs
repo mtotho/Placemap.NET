@@ -7,18 +7,12 @@ using System.Threading.Tasks;
 
 namespace Tothdev.Placemap.Repository.Mapping
 {
-    public class SurveyItem : EntityTypeConfiguration<Entity.SurveyItem>
+    public class SurveyItemOption : EntityTypeConfiguration<Entity.SurveyItemOption>
     {
-        public SurveyItem()
+        public SurveyItemOption()
         {
-            ToTable("SurveyItem");
+            ToTable("SurveyItemOption");
             HasKey(e => e.Id);
-
-            Property(x => x.MaximumValue)
-                .IsOptional();
-
-            Property(x => x.MinimumValue)
-                .IsOptional();
 
             Property(x => x.UpdateDate)
                 .IsOptional();

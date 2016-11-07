@@ -15,11 +15,17 @@ namespace Tothdev.Placemap.Entity
         public int? MaximumValue { get; set; }
         public bool HigherIsBetter { get; set; }
         public int PlaceMapSurveyId { get; set; }
-        public string OptionJson { get; set; }
+        public bool DeterminesMarkerColor { get; set; }
+        public List<SurveyItemOption> Options { get; set; }
         public PlacemapSurvey PlacemapSurvey { get; set; }
         public int SurveyItemTypeId { get; set; }
         public SurveyItemType SurveyItemType { get; set; }
         public DateTime InsertDate { get; set; }
         public DateTime? UpdateDate { get; set; }
+
+        public SurveyItem()
+        {
+            DeterminesMarkerColor = false;
+        }
     }
 }

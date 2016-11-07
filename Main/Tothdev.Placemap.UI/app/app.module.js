@@ -4,6 +4,7 @@ angular.module('Tothdev.Placemap.UI', [
     'ngMaterial',
     'ngAnimate',
     'ui.router',
+    'ngCookies',
     'uiGmapgoogle-maps'
 ])
 
@@ -16,7 +17,7 @@ angular.module('Tothdev.Placemap.UI', [
 				  'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
   
 	   //  $httpProvider.interceptors.push('TokenInterceptor');            })*/
-
+        $httpProvider.interceptors.push('TokenInterceptor');
         //uiGmapGoogleMapApiProvider.configure({
         //    // key: 'AIzaSyD93JNhuGDGJKKgp8JGBpj60bDbbpMgJis',
         //    v: '3.17',
@@ -26,6 +27,8 @@ angular.module('Tothdev.Placemap.UI', [
 
     }).run(function ($rootScope, $window, $location) {
         // when the page refreshes, check if the user is already logged in
+
+
 
 
     })

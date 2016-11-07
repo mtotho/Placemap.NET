@@ -127,6 +127,7 @@
     <Compile Include="ApiControllers\PlaceFeedbackController.cs" />
     <Compile Include="ApiControllers\PlacesController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="DTO\SurveyResponseDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
