@@ -9,7 +9,7 @@ namespace Tothdev.Placemap.API.DTO
     public class SurveyResponseDTO
     {
         public int Id { get; set; }
-        public List<SurveyResponseAnswer> SurveyResponseAnswers { get; set; }
+        public List<SurveyResponseAnswerDTO> SurveyResponseAnswers { get; set; }
         public string MarkerColor { get; set; }
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }

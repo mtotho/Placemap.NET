@@ -17,7 +17,7 @@ namespace Tothdev.Placemap.API.ApiControllers
         [Route("Post")]
         public bool Post(SurveyResponse response)
         {
-            var sessionKey= Request.Headers.FirstOrDefault(i => i.Key == "SESSION_KEY");
+            var sessionKey= Request.Headers.FirstOrDefault(i => i.Key == "SESSIONKEY");
             var sessionKeyString = sessionKey.Key != null ? sessionKey.Value.FirstOrDefault() : "";
 
             var _db = new PlacemapDBContext();

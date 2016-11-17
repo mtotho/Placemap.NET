@@ -1,0 +1,70 @@
+﻿<style>
+    .loading{
+        z-index:1000 !important;
+        width:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        background-color:white;
+        opacity: 0.6;
+        overflow:none;
+    
+        font-weight:bold;
+        text-align:center;
+        font-size:30px;
+    }
+    .loading .loading-text{
+        padding-top:100px;
+    }
+</style>
+
+
+
+<section layout="row">
+
+    <div class="loading full-height-window" ng-show="!ResponsesViewModel">
+       <div class="loading-text">
+           Loading
+       </div>
+    </div>
+
+    <div flex id="placemap">
+        <ui-gmap-google-map center='map.center' id="map_canvas" zoom='map.zoom' events='map.events' control="mapControl">
+
+
+            <!--  <ui-gmap-markers
+                 models='{expression}'
+                 idKey='{expression}'
+                 doRebuildAll="{string or object}"
+                 doCluster="{string or object}"
+                 clusterOptions='{expression}'
+                 fit="{string or object}"
+                 labelContent='{expression}'
+                 coords="'{string}'"
+                 icon="'{string}'"
+                 options="'{string}'"
+                 labelContent="'{string}'"
+                 labelAnchor="'{string}'"
+                 labelClass="'{string}'"
+                 click="'{string or expression to a function}'"
+                 events="{expression}"
+                 control='{expression}'
+                >
+            </ui-gmap-markers>-->
+        
+
+           <ui-gmap-markers models="ResponseMarkers" coords="'coords'" click="click" options="'options'"></ui-gmap-markers>
+
+        </ui-gmap-google-map>
+    </div>
+
+
+    <md-card flex="40" flex-md="60" flex-sm="80" flex-xs="100" style="z-index:20; margin:0px" ng-show="vm.ShowMarkerResponses">
+        <placemap-response-area selected-response="vm.SelectedResponse"></placemap-response-area>
+    </md-card>
+
+
+
+
+</section>
+

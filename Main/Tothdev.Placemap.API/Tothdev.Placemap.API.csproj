@@ -127,11 +127,14 @@
     <Compile Include="ApiControllers\PlaceFeedbackController.cs" />
     <Compile Include="ApiControllers\PlacesController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\EntityMapper.cs" />
+    <Compile Include="DTO\SurveyResponseAnswerDTO.cs" />
     <Compile Include="DTO\SurveyResponseDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\PlaceListViewModel.cs" />
+    <Compile Include="Models\PlaceResponsesViewModel.cs" />
     <Compile Include="Models\PlaceViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seed.cs" />

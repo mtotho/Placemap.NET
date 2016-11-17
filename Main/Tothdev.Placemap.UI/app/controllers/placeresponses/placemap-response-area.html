@@ -1,0 +1,67 @@
+﻿<style>
+    #feedback-question-content {
+        min-height: 200px;
+    }
+
+    .response-answer{
+        padding-left:10px;
+        font-style:italic;
+        font-weight:bold;
+    }
+
+    @media screen and (max-width: 600px) {
+        #feedback-question-content {
+            min-height: 0px;
+        }
+    }
+</style>
+<div layout="column" layout-padding>
+
+    <div layout="column" ng-hide="vm.questionsComplete">
+        <div style="font-weight:bold; margin-bottom:10px;">Viewing response for this location:</div>
+        <md-progress-linear style="width:100%" md-mode="determinate" ng-value="(vm.ResponseAnswerIndex/(vm.responseAnswerCt-1))*100"></md-progress-linear>
+    </div>
+
+
+    <div layout="column" layout-fill layout-align="space-between start">
+        <div id="feedback-question-content" layout-fill style="padding-top:30px;" layout="column">
+            <div layout-padding class="question" layout="column" style="">
+                <div layout="row">
+                    <div class="question-title">
+                        {{vm.ResponseAnswerIndex + 1}}. {{vm.CurrentResponseAnswer.SurveyItem.ItemText}}
+                    </div>
+                </div>
+
+                <div ng-show="vm.CurrentResponseAnswer.ItemType==='checkbox'" layout="row" layout-wrap>
+                    <div ng-repeat="option in vm.CurrentResponseAnswer.CheckBoxOptions" flex="40" layout layout-align="start center" >
+                       <div><i class="material-icons">check</i></div> <div style="padding-left:10px">{{option}}</div>
+                    </div>
+                </div>
+
+                <div ng-show="vm.CurrentResponseAnswer.ItemType==='shortanswer'">
+                    <div  class="response-answer">
+                        {{vm.CurrentResponseAnswer.AnswerText}}
+                    </div>
+                </div>
+
+                <div ng-show="vm.CurrentResponseAnswer.ItemType==='radio'">
+                    <div class="response-answer">
+                        {{vm.CurrentResponseAnswer.RadioOptionSelected.OptionText}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div layout-fill layout="row" layout-align="end center">
+            <div>
+                <md-button class="md-accent" ng-show="vm.ResponseAnswerIndex > 0" ng-click="vm.previousResponseAnswer()">Previous</md-button>
+            </div>
+            <div>
+                <md-button class="md-primary" ng-show="vm.ResponseAnswerIndex < vm.responseAnswerCt-1" ng-click="vm.nextResponseAnswer($event)">Next</md-button>
+            </div>
+
+        </div>
+    </div>
+
+  
+
+</div>

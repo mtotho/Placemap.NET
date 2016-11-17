@@ -18,9 +18,21 @@
         <md-progress-linear style="width:100%" md-mode="determinate" ng-value="(vm.QuestionIndex/(vm.questionCount-1))*100"></md-progress-linear>
     </div>
 
+    <div layout="row" style="margin-top:10px;">
+        <md-button aria-label="back button"
+                   class="md-icon-button launch"
+                   style="padding-left:0px;margin-left:0px;"
+                   ng-click="vm.goBack()">
+            <i class="material-icons" style="line-height:35px">arrow_back</i>
+            <!--     <md-icon md-svg-icon="assets/icons/ic_arrow_back_48px.svg"></md-icon>-->
+
+        </md-button>
+        <p style="cursor:pointer" ng-click="vm.goBack()">Click here to choose a different location instead</p>
+
+    </div>
 
     <div layout="column" layout-fill layout-align="space-between start">
-        <div id="feedback-question-content" layout-fill style="padding-top:30px;" layout="column" ng-hide="vm.questionsComplete">
+        <div id="feedback-question-content" layout-fill style="padding-top:10px;" layout="column" ng-hide="vm.questionsComplete">
 
             <div layout-padding class="question" layout="column" style="">
 
@@ -81,18 +93,6 @@
         </div>
     </div>
 
-    <div layout="row" style="margin-top:50px;">
-        <md-button aria-label="back button"
-                   class="md-icon-button launch"
-                   style="padding-left:0px;margin-left:0px;"
-                   ng-click="vm.goBack()">
-            <i class="material-icons" style="line-height:35px">arrow_back</i>
-            <!--     <md-icon md-svg-icon="assets/icons/ic_arrow_back_48px.svg"></md-icon>-->
-
-        </md-button>
-        <p style="cursor:pointer" ng-click="vm.goBack()">Click here to choose a different location instead</p>
-
-    </div>
 
 
     <div layout="column" ng-show="vm.questionsComplete">
